@@ -1,0 +1,12 @@
+{
+    "_template": "https://github.com/apiology/cookiecutter-docker-image",
+    "email": "vince@broz.cc",
+    "full_name": "Vince Broz",
+    "github_username": "apiology",
+    "open_source_license": "MIT license",
+    "project_name": "Docker CircleCI Ruby image",
+    "project_short_description": "This is pretty uninteresting, just a CircleCI build image I use for some projects to cache some Ubuntu dependencies needed for builds.",
+    "project_slug": "docker-circleci-ruby",
+    "type_of_github_repo": "public",
+    "version": "0.1.0"
+}
