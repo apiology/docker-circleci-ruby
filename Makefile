@@ -16,7 +16,7 @@ help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 build: ## build docker image
-	docker build --progress plain -t apiology/whatever .
+	docker build --progress plain -t apiology/circleci-ruby .
 
 default: build test ## run default typechecking and tests
 

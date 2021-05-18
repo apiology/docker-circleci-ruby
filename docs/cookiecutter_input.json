@@ -1,7 +1,7 @@
 {
     "_template": "https://github.com/apiology/cookiecutter-docker-image",
     "email": "vince@broz.cc",
-    "full_docker_image_name": "apiology/whatever",
+    "full_docker_image_name": "apiology/circleci-ruby",
     "full_name": "Vince Broz",
     "github_username": "apiology",
     "open_source_license": "MIT license",
