@@ -127,6 +127,8 @@ workflows:
     jobs:
       - build
       - publish_docker_image:
+          context:
+            - dockerhub
           requires:
             - build
 #          filters:
