@@ -94,19 +94,23 @@ jobs:
     steps:
       - setup_remote_docker
       - set_up_environment
-      - run_with_languages:
-          label: Test
-          command: make test
-  publish_docker_image:
-    working_directory: ~/docker-circleci-ruby
-    docker:
-      - image: apiology/circleci:latest
-    steps:
-      - setup_remote_docker
-      - run: docker login -u apiology -p ${DOCKERHUB_TOKEN:?}
-      - set_up_environment
-      - run: docker build --pull --progress plain -t apiology/circleci-ruby:latest .
-      - run: docker push apiology/circleci-ruby:latest
+      - when:
+          condition:
+            equal: [<< pipeline.git.branch >>, "main"]
+          steps:
+            - overcommit
+            - run_with_languages:
+                label: Build image
+                # command: make build  # TODO
+                command: make publish  # TODO
+      - unless:
+          condition:
+            equal: [<< pipeline.git.branch >>, "main"]
+          steps:
+            - run: docker login -u apiology -p ${DOCKERHUB_TOKEN:?}
+            - run_with_languages:
+                label: Build and publish image
+                command: make publish
 
 workflows:
   version: 2
@@ -126,11 +130,3 @@ workflows:
   build:
     jobs:
       - build
-      - publish_docker_image:
-          context:
-            - dockerhub
-          requires:
-            - build
-#          filters:
-#            branches:  # TODO
-#              only: main
