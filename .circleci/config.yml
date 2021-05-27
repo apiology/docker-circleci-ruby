@@ -106,7 +106,7 @@ jobs:
       - run: docker login -u apiology -p ${DOCKERHUB_TOKEN:?}
       - set_up_environment
       - run: docker build --pull --progress plain -t apiology/circleci-ruby:latest .
-      - run: docker push --progress plain apiology/circleci-ruby:latest
+      - run: docker push apiology/circleci-ruby:latest
 
 workflows:
   version: 2
