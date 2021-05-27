@@ -101,8 +101,7 @@ jobs:
             - overcommit
             - run_with_languages:
                 label: Build image
-                # command: make build  # TODO
-                command: make publish  # TODO
+                command: make build
       - unless:
           condition:
             equal: [<< pipeline.git.branch >>, "main"]
