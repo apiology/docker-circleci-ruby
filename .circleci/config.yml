@@ -94,9 +94,22 @@ jobs:
     steps:
       - setup_remote_docker
       - set_up_environment
-      - run_with_languages:
-          label: Test
-          command: make test
+      - when:
+          condition:
+            equal: [<< pipeline.git.branch >>, "main"]
+          steps:
+            - overcommit
+            - run_with_languages:
+                label: Build image
+                command: make build
+      - unless:
+          condition:
+            equal: [<< pipeline.git.branch >>, "main"]
+          steps:
+            - run: docker login -u apiology -p ${DOCKERHUB_TOKEN:?}
+            - run_with_languages:
+                label: Build and publish image
+                command: make publish
 
 workflows:
   version: 2
@@ -115,4 +128,6 @@ workflows:
       - overcommit
   build:
     jobs:
-      - build
+      - build:
+          context:
+            - dockerhub
