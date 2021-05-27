@@ -97,6 +97,16 @@ jobs:
       - run_with_languages:
           label: Test
           command: make test
+  publish_docker_image:
+    working_directory: ~/docker-circleci-ruby
+    docker:
+      - image: apiology/circleci:latest
+    steps:
+      - setup_remote_docker
+      - run: docker login -u apiology -p ${DOCKERHUB_TOKEN:?}
+      - set_up_environment
+      - run: docker build --pull --progress plain -t apiology/circleci-ruby:latest .
+      - run: docker push --progress plain apiology/circleci-ruby:latest
 
 workflows:
   version: 2
@@ -116,3 +126,9 @@ workflows:
   build:
     jobs:
       - build
+      - publish_docker_image:
+          requires:
+            - build
+#          filters:
+#            branches:  # TODO
+#              only: main
