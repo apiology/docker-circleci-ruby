@@ -98,18 +98,17 @@ jobs:
           condition:
             equal: [<< pipeline.git.branch >>, "main"]
           steps:
-            - overcommit
-            - run_with_languages:
-                label: Build image
-                command: make build
-      - unless:
-          condition:
-            equal: [<< pipeline.git.branch >>, "main"]
-          steps:
             - run: docker login -u apiology -p ${DOCKERHUB_TOKEN:?}
             - run_with_languages:
                 label: Build and publish image
                 command: make publish
+      - unless:
+          condition:
+            equal: [<< pipeline.git.branch >>, "main"]
+          steps:
+            - run_with_languages:
+                label: Build image
+                command: make build
 
 workflows:
   version: 2
