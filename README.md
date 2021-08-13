@@ -1,5 +1,7 @@
 # CircleCI build image for Ruby
 
+[![CircleCI](https://circleci.com/gh/apiology/docker-circleci-ruby.svg?style=svg)](https://circleci.com/gh/apiology/docker-circleci-ruby)
+
 This is pretty uninteresting, just a CircleCI build image I use for
 some projects to cache some Ubuntu dependencies needed for builds.
 
