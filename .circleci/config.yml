@@ -96,7 +96,7 @@ jobs:
   build:
     working_directory: ~/docker-circleci-ruby
     docker:
-      - image: apiology/circleci:latest
+      - image: apiology/circleci-ruby:latest
     steps:
       - setup_remote_docker
       - set_up_environment
