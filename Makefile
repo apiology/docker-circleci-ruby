@@ -21,7 +21,7 @@ build: ## build docker image
 publish: build ## publish docker image
 	docker push apiology/circleci-ruby:latest
 
-default: build test ## run default typechecking and tests
+default: build test quality ## build docker image, run tests and quality
 
 requirements_dev.txt.installed: requirements_dev.txt
 	pip install -q --disable-pip-version-check -r requirements_dev.txt
