@@ -9,8 +9,8 @@ RUN cd /tmp && \
     strip /home/circleci/.pyenv/versions/*/lib/python*/lib-dynload/*.so && \
     strip /home/circleci/.pyenv/versions/*/lib/python*/config-*/*.a && \
     ( find /home/circleci/.pyenv/versions -name __pycache__ | xargs rm -fr ) && \
-    chmod 755 /home/circleci/.pyenv/versions/*/lib/*.a && \
-    strip /home/circleci/.pyenv/versions/*/lib/*.a && \
+    chmod 755 /home/circleci/.pyenv/versions/*/lib/*.so && \
+    strip /home/circleci/.pyenv/versions/*/lib/*.so && \
     rm -fr /home/circleci/.rbenv/versions/*/share/*
 
 # libicu, pkg-config, cmake needed by rugged, needed by undercover
