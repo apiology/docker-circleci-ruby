@@ -368,9 +368,15 @@ ensure_overcommit() {
   fi
 }
 
+ensure_handlebars_engine_packages_installed() {
+  install_package v8 libv8-dev # needed by handlebars-engine, needed by template support
+}
+
 ensure_ruby_versions
 
 set_ruby_local_version
+
+ensure_handlebars_engine_packages_installed
 
 ensure_bundle
 
