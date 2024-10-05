@@ -2,7 +2,7 @@ ARG DOCKER_TAG=latest
 FROM apiology/circleci:${DOCKER_TAG}
 MAINTAINER apiology
 
-COPY Makefile fix.sh requirements_dev.txt Gemfile Gemfile.lock /tmp/
+COPY --chown=circleci:circleci Makefile fix.sh requirements_dev.txt Gemfile Gemfile.lock /tmp/
 RUN cd /tmp && \
     ./fix.sh && \
     rm -fr /home/circleci/.pyenv/versions/*/lib/python*/test && \
